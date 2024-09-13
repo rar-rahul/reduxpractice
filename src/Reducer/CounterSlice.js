@@ -1,12 +1,17 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit"
+import { createSlice,createAsyncThunk,createAction } from "@reduxjs/toolkit"
 import { fetchPost } from "../Tunk/fetchPost";
+
+const getCart = createAction('getCartList');
+console.log(getCart);
 const initialState = {
     value:0,
     products:[],
     state:'idil',
-    posts:[]
+    posts:[],
+    users:[],
+    isLoading:false
 }
-
+//tunk function using asyncThunk
 export const fetchData = createAsyncThunk('counter/fetchproduct',
     async () => {
         const responce = await fetch('https://dummyjson.com/products');
@@ -41,10 +46,18 @@ export const CounterSlice = createSlice({
             ...state,
             posts:action.payload
           }
+        },
+        fetchUserData:(state) => { 
+            state.isLoading = true
+        },
+        fetchuserSuccess:(state,action) => {
+            state.isLoading = false;
+            state.users = action.payload
         }
+        
     },
     selectors:{
-        selectValue:(state) => state.value + 100
+        selectValue:(state) => state.value + 250
     },
     extraReducers:(builder) => {
         builder
@@ -61,7 +74,7 @@ export const CounterSlice = createSlice({
     }
 })
 
-export const { increment,decrement,incByNumber,loadPosts }  =  CounterSlice.actions;
+export const { increment,decrement,incByNumber,loadPosts,fetchUserData,fetchuserSuccess }  =  CounterSlice.actions;
 
 export const {selectValue} = CounterSlice.selectors
 

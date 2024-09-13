@@ -6,6 +6,11 @@ import Reducer from './Component/Reducer';
 import Home from './Component/Home';
 import {Store} from './Store/index'
 import {Provider} from 'react-redux'
+import Navbar from './Component/Navbar';
+import { Routes,Route,BrowserRouter as Router } from 'react-router-dom';
+import Saga from './Component/Saga';
+import Products from './Component/Products';
+import Cart from './Component/Cart';
 
 console.log(Store.getState())
 const Context = createContext({
@@ -93,8 +98,16 @@ function App() {
       {show && <Reducer/>} 
       </div>
       </Context.Provider> */}
-
-        <Home/>
+      <Router>
+      <Navbar/>
+        <Routes>
+       <Route exact path='/' element={<Home/>}/>
+       <Route exact path='/saga' element={<Saga/>}/>
+       <Route exact path='/store' element={<Products/>}/>
+       <Route exact path='/cart' element={<Cart/>}/>
+        </Routes>
+      </Router>
+      
         </Provider>
      </div>
   );
