@@ -8,7 +8,6 @@ const Saga = () => {
     const isLoading = store.isLoading
     const dispatch = useDispatch()
    
-    console.log(users)
 
     useEffect(() => {
         dispatch(fetchUserData())

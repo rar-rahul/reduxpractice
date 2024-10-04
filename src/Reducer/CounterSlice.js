@@ -15,7 +15,7 @@ const initialState = {
 export const fetchData = createAsyncThunk('counter/fetchproduct',
     async () => {
         const responce = await fetch('https://dummyjson.com/products');
-        return await responce.json()
+        return await responce.json();
     }
 )
 

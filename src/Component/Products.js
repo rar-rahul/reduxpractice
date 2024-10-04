@@ -7,8 +7,7 @@ const Products = () => {
     const dispatch = useDispatch()
     const product = products.products
 
-   console.log(cart)
-
+    
     useEffect(() => {
         dispatch(fetchProducts())
     },[dispatch])
@@ -29,7 +28,6 @@ const Products = () => {
             <ProductCard product={product} key={product.id}/>
         ))
       }
-      
       </div>
     </div>
        </div>

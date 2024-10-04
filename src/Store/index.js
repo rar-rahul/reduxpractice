@@ -1,4 +1,4 @@
-import {configureStore, applyMiddleware} from '@reduxjs/toolkit'
+import {configureStore, applyMiddleware,combineSlices} from '@reduxjs/toolkit'
 import {CounterReducer} from '../Reducer/CounterReducer'
 import CounterSlice from '../Reducer/CounterSlice'
 import ProductSlice from '../Reducer/ProductSlice'
@@ -6,6 +6,8 @@ import {thunk} from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from '../saga'
 import logger from 'redux-logger'
+//we can use combine slice like that
+const rootReducer = combineSlices(CounterSlice,ProductSlice)
 
 
 const sagaMiddleware = createSagaMiddleware()

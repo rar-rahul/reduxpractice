@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import { removeCart } from '../Reducer/ProductSlice';
+import { removeCart,updateCart,cartTotalSelector,updateQtyTotalAmount } from '../Reducer/ProductSlice';
 const Cart = () => {
     const {cart} = useSelector((state) => state.store)
+   //const totalPrice = useSelector(cartTotal)
     const dispatch = useDispatch()
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cart.reduce((total, item) => total + item.price * item.qty, 0);
+
+  const handleChange = (e,itemId) => {
+    const newQty = Number(e.target.value);
+    console.log(newQty)
+    dispatch(updateQtyTotalAmount({id:itemId,qty:newQty}))
+  }
 
   return (
     <div className="container mx-auto p-5">
@@ -27,12 +34,14 @@ const Cart = () => {
                 >
                   Remove
                 </button>
+                <input type='number' key={item.id} onChange={(e) => handleChange(e, item.id)}  className='px-4 py-2 rounded border-spacing-1' value={item.qty}/>
+               
               </div>
             ))}
           </div>
 
           <div className="bg-gray-100 p-4 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold">Total: ${totalPrice.toFixed(2)}</h2>
+            <h2 className="text-xl font-semibold">Total Amount: Rs.{totalPrice.toFixed(2)}</h2>
             <button className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
               Checkout
             </button>

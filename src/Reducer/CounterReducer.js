@@ -1,4 +1,6 @@
+import { createAction } from "@reduxjs/toolkit";
 
+const addPost = createAction();
 const initialState = {value:0}
 export function CounterReducer(state = initialState,action) {
 

@@ -9,6 +9,7 @@ const ProductCard = ({product}) => {
             id:product.id,
             title:product.title,
             price:product.price,
+            qty:1
         }))
     }
   return (
@@ -23,7 +24,7 @@ const ProductCard = ({product}) => {
         <h2 className="text-lg font-semibold mb-2">{product.title}</h2>
         <p className="text-gray-600 mb-4">{product.description.slice(0, 60)}...</p>
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold text-gray-900">${product.price}</span>
+          <span className="text-xl font-bold text-gray-900">Rs.{product.price}</span>
           <button onClick={handleAddToCart} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Add to Cart
           </button>

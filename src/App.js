@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Label from './Component/Label';
 import Form from './Component/Form';
 import Reducer from './Component/Reducer';
@@ -11,6 +12,8 @@ import { Routes,Route,BrowserRouter as Router } from 'react-router-dom';
 import Saga from './Component/Saga';
 import Products from './Component/Products';
 import Cart from './Component/Cart';
+import TanStack from './Component/TanStack';
+import PostDetail from './Component/PostDetail';
 
 console.log(Store.getState())
 const Context = createContext({
@@ -105,6 +108,8 @@ function App() {
        <Route exact path='/saga' element={<Saga/>}/>
        <Route exact path='/store' element={<Products/>}/>
        <Route exact path='/cart' element={<Cart/>}/>
+       <Route exact path='/tanstack' element={<TanStack/>}/>
+       <Route exact path='/tanstack/:postId' element={<PostDetail/>}/>
         </Routes>
       </Router>
       
